@@ -15,9 +15,10 @@ Machine learning algorithms written from scratch using R, Python and Matlab
 |   +-- ensemble.R            # Ensemble modelling (Maximum voting algorithm)
 |   +-- gradient-descent      # Different algorithms implementation using stochastic batch gradient-descent technique
 |   |   +-- simple-gradient-descent.R
+|   |   +-- linear-regression.png       # useful to understand derivatives in linear-regression cost function
 |   |   +-- linear-regression.R
-|   |   +-- linear-regression.png
 |   |   +-- multiple-regression.R
+|   |   +-- logistic-regression.png     # useful to understand derivatives in logistic-regression cost function
 |   |   +-- logistic-regression.R
 +-- Matlab
 |   +-- LogisticWithSGD.m     # Logistic regression using Stochastic Gradient descent algorithm
@@ -25,9 +26,10 @@ Machine learning algorithms written from scratch using R, Python and Matlab
 |   +-- iris.csv              # IRIS dataset for importing in matlab
 +-- Python
 |   +-- gradient-descent      # Different algorithms implementation using stochastic batch gradient-descent technique
-|   |   +-- simple-gradient-descent.py
-|   |   +-- linear-regression.py
-|   |   +-- linear-regression.png
-|   |   +-- multiple-regression.py
-|   |   +-- logistic-regression.py
+|   |   +-- simple-gradient-descent.R
+|   |   +-- linear-regression.png       # useful to understand derivatives in linear-regression cost function
+|   |   +-- linear-regression.R
+|   |   +-- multiple-regression.R
+|   |   +-- logistic-regression.png     # useful to understand derivatives in logistic-regression cost function
+|   |   +-- logistic-regression.R
 ```
