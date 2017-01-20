@@ -7,7 +7,7 @@
 # # parameters
 # x = input features (usually a list of lists)
 # y = original target variable values
-# params = parameters that needs to be optimized
+# params = A dictionary of parameters that needs to be optimized with keys as names of the parameters and values as values of the parameters
 # yEQ = A function that calculates the Yhat value with parameters x and params
 # derivatives = A function that calculates the derivatives change for params
 # loss = A function that calculates the loss value between original and predicted
