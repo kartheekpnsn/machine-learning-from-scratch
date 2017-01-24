@@ -19,9 +19,15 @@
 def vanilla_gradient_descent(x, y, params, yEQ, derivatives, loss, iters = 100000, learning_rate = 0.01, adaptive = False, threshold = 0.0001, change_threshold = 0.001, print_every = 100, force = True, reg = False, scale = False, plot_flag = True):
 	iter_loss = []
 	if scale:
-		means = [sum(i)/float(len(i)) for i in x]
-		sds = [sum([(j - means[i])**2 for j in x[i]])/(len(x[i])-1) for i in range(len(x))] # (1/(N-1)) * sigma((xi - mu)^2)
-		x = [[(j - means[i])/float(sds[i]) for j in x[i]] for i in range(len(x))]
+		import math
+		if type(x[0]) is list:
+			means = [sum(i)/float(len(i)) for i in x]
+			sds = [math.sqrt(sum([(j - means[i])**2 for j in x[i]])/(len(x[i])-1)) for i in range(len(x))] # sqrt((1/(N-1)) * sigma((xi - mu)^2))
+			x = [[(j - means[i])/float(sds[i]) for j in x[i]] for i in range(len(x))]
+		else:
+			means = sum(x)/float(len(x))
+			sds = math.sqrt(sum([(i - means)**2 for i in x])/(len(x)-1))
+			x = [(i - means)/float(sds) for i in x]
 
 	# # start iterations
 	break_flag = False
