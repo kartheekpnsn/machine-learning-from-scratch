@@ -38,9 +38,14 @@ def derivative2(y, yhat, x):
 # yhat = predicted values of target variable
 # params = parameters that needs optimization
 # learning_rate = learning_rate to proceed with the gradient
-def derivatives(x, y, yhat, params, learning_rate):
-	params['theta0'] = round(params['theta0'] - learning_rate * derivative1(y, yhat), 4)
-	params['theta1'] = round(params['theta1'] - learning_rate * derivative2(y, yhat, x), 4)
+def derivatives(x, y, yhat, params, learning_rate, complex = False):
+	d1 = derivative1(y, yhat)
+	d2 = derivative2(y, yhat, x)
+	if complex:
+		d1 = float(d1)/max(d1, d2)
+		d2 = float(d2)/max(d1, d2)
+	params['theta0'] = round(params['theta0'] - learning_rate * d1, 4)
+	params['theta1'] = round(params['theta1'] - learning_rate * d2, 4)
 	return(params)
 
 
@@ -51,11 +56,11 @@ def derivatives(x, y, yhat, params, learning_rate):
 def yEQ(x, params):
 	return [(params['theta0'] + (i * params['theta1'])) for i in x]
 
-from gradient import vanilla_gradient_descent
+from gradient import iterLearningRate, vanilla_gradient_descent
 
 # # # formulate original 'y' i.e. y = 3 + 2*x (i.e. theta0 + theta1 * x)
 x = range(1, 10)
 y = yEQ(x, params = {'theta0' : 3, 'theta1' : 2})
 
-# # run vanilla gradient descent
-vanilla_gradient_descent(x, y, params = {'theta0' : 0, 'theta1' : 0}, derivatives = derivatives, yEQ = yEQ, loss = loss)
+print vanilla_gradient_descent(x, y, params = {'theta0' : 0, 'theta1' : 0}, derivatives = derivatives, force = True, learning_rate = 0.1, yEQ = yEQ, loss = loss, adaptive = True)
+print iterLearningRate(x, y, params = {'theta0' : 0, 'theta1' : 0}, derivatives = derivatives, yEQ = yEQ, force = True, loss = loss, adaptive = True, plot_flag = False)
