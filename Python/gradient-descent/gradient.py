@@ -86,8 +86,8 @@ def vanilla_gradient_descent(x, y, params, yEQ, derivatives, loss, iters = 10000
 		plt.plot(range(1, len(iter_loss) + 1), iter_loss, lw = 2)
 		plt.axis([-len(iter_loss)/100, len(iter_loss) + 100, -max(iter_loss)/10, max(iter_loss) + 10])
 		plt.title('For alpha = ' + str(learning_rate) + ' :: Loss at every iteration')
-		plt.ylabel('Iterations')
-		plt.xlabel('Loss')
+		plt.xlabel('Iterations')
+		plt.ylabel('Loss')
 		plt.show()
 	return {'learning_rate' : learning_rate, 'params' : params, 'loss' : loss(y, yhat), 'iter_loss' : iter_loss}
 
