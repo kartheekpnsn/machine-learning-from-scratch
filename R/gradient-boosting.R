@@ -6,17 +6,16 @@
 		# # Cbind(X, gradient) - build decision stump regressor with maxdepth = 2 and minsplit = 2
 		# # store the model in a list
 		# # predict the gradient on X
-		# # update the prediction using learning rate i.e. old = old - (learning_rate * predicted_gradient)
+		# # update the prediction using learning rate i.e. y_pred = y_pred - (learning_rate * predicted_gradient)
 # # STEP: 2 (PREDICTION)
 	# # For each tree
 		# # predict the gradient
 		# # update the gradient using learning rate i.e. gradient = gradient * learning_rate
 		# # update the final prediction as:
-			# # if first time: -gradient
-			# # if not first time: y_pred - gradient
+			# # y_pred - gradient
 	# # squash it using soft max
 
-f_gradientfit = function(data, target, learning_rate = 0.5, n_estimators = 10, verbose = F) {
+f_gradientfit = function(data, target, learning_rate = 0.5, n_estimators = 10, verbose = FALSE) {
 	y_pred = rep(mean(data[, target]), nrow(data))
 	y = data[, target]
 	fit_list = list()
@@ -44,11 +43,11 @@ f_gradientfit = function(data, target, learning_rate = 0.5, n_estimators = 10, v
 
 
 f_predict = function(fit, newdata) {
-	y_pred = rep(-999, nrow(newdata))
+	y_pred = rep(0, nrow(newdata))
 	for(i in 1:n_estimators) {
 		update = predict(fit[[i]], newdata)
 		update = learning_rate * update
-		y_pred = ifelse(y_pred == -999, -update, y_pred - update)
+		y_pred = y_pred - upte
 		print(rbind(update, y_pred))
 	}
 	y_pred = exp(y_pred)/sum(exp(y_pred))
