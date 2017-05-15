@@ -19,6 +19,7 @@ f_gradient_fit = function(data, target = 'Y', base_model = NULL, n_estimators = 
 	nclasses = length(unique(data[, target]))
 	y = data[, target]
 	model_list = list()
+	library(rpart)
 	for(eachClass in 1:nclasses) {
 		print(paste("# # For Class:", eachClass - 1, "# #"))
 
@@ -40,8 +41,8 @@ f_gradient_fit = function(data, target = 'Y', base_model = NULL, n_estimators = 
 				progress = (i/n_estimators) * 100
 				loss = (1/length(y_pred)) * sum((y - y_pred)**2)
 				if(verbose) {
-					print(paste("# # Progress :", progress, "# #"))
-					print(paste("# # Loss     :", loss, "# #"))
+					print(paste("> Progress :", progress))
+					print(paste("> Loss     :", loss))
 				}
 			}
 		}
@@ -93,15 +94,9 @@ f_gradient_predict = function(model_list, newdata, learning_rate = 1, validate =
 	test$Y[test$A == 'female' & test$B %in% c('lean', 'fat')] = 1
 	test$Y[test$A == 'others' & test$B == 'lean'] = 1
 
-	target = 'Y'
-	learning_rate = 1
-	rounds = 100
-	fit_list = list()
-	library(rpart)
 	library(randomForest)
 	base_model = randomForest(factor(Y) ~ ., data = data, ntree = 2, mtries = 1)
 	table(predict(base_model, data), data$Y)
 
-
-	model_list = f_gradient_fit(data = data, target = 'Y', base_model = base_model, n_estimators = 10)
+	model_list = f_gradient_fit(data = data, target = 'Y', base_model = base_model, n_estimators = 100)
 	predicted = f_gradient_predict(model_list, newdata = test, target = 'Y', validate = TRUE, base_model = base_model)
