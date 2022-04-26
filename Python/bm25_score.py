@@ -4,7 +4,8 @@ import pandas as pd
 class BM25:
     def __init__(self, full_q, d_list, unique=False, k=2, b=0.75):
         """
-        Reference: https://www.elastic.co/blog/practical-bm25-part-2-the-bm25-algorithm-and-its-variables
+        Reference1: https://www.elastic.co/blog/practical-bm25-part-2-the-bm25-algorithm-and-its-variables
+        Reference2: https://www.youtube.com/watch?v=a3sg6MH8m4k&ab_channel=BadriAdhikari
         """
         self.full_q = full_q
         self.d_list = [d.lower() for d in d_list]
