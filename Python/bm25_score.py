@@ -76,12 +76,23 @@ _tmp.sort_values('BM25 Score', ascending=False)
 
 
 """
-We see a variable b which shows up in the denominator and that it’s multiplied by the ratio of the field length we just discussed. If b is bigger, the effects of the length of the document compared to the average length are more amplified. To see this, you can imagine if you set b to 0, the effect of the length ratio would be completely nullified and the length of the document would have no bearing on the score. By default, b has a value of 0.75 in Elasticsearch.
+We see a variable b which shows up in the denominator and that it’s multiplied by the ratio of the field length we just discussed. 
+If b is bigger, the effects of the length of the document compared to the average length are more amplified. 
+To see this, you can imagine if you set b to 0, the effect of the length ratio would be completely nullified and 
+the length of the document would have no bearing on the score. 
+By default, b has a value of 0.75 in Elasticsearch.
 """
 
 
 """
-A higher/lower k1 value means that the slope of “tf() of BM25” curve changes. This has the effect of changing how “terms occurring extra times add extra score.” An interpretation of k1 is that for documents of the average length, it is the value of the term frequency that gives a score of half the maximum score for the considered term. The curve of the impact of tf on the score grows quickly when tf() ≤ k1 and slower and slower when tf() > k1.
+A higher/lower k1 value means that the slope of “tf() of BM25” curve changes. 
+This has the effect of changing how “terms occurring extra times add extra score.” 
+An interpretation of k1 is that for documents of the average length, it is the value of the term frequency that gives a score of half the maximum score for the considered term. 
+The curve of the impact of tf on the score grows quickly when tf() ≤ k1 and slower and slower when tf() > k1.
 
-Continuing with our example, with k1 we’re controlling the answer to the question “how much more should adding a second ‘shane’ to the document contribute to the score than the first or the third compared to the second?” A higher k1 means that the score for each term can continue to go up by relatively more for more instances of that term. A value of 0 for k1 would mean that everything except IDF(qi) would cancel out. By default, k1 has a value of 1.2 in Elasticsearch.
+Continuing with our example, with k1 we’re controlling the answer to the question 
+“how much more should adding a second ‘shane’ to the document contribute to the score than the first or the third compared to the second?” 
+A higher k1 means that the score for each term can continue to go up by relatively more for more instances of that term. 
+A value of 0 for k1 would mean that everything except IDF(qi) would cancel out. 
+By default, k1 has a value of 1.2 in Elasticsearch.
 """
