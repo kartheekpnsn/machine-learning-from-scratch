@@ -1,3 +1,6 @@
+import numpy as np
+import pandas as pd
+
 class BM25:
     def __init__(self, full_q, d_list, unique=False, k=2, b=0.75):
         """
